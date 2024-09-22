@@ -30,14 +30,14 @@ export class TasksController {
   }
 
   @Get()
-  @ApiOperation({ summary: 'Retrieve all tasks' })
+  @ApiOperation({ summary: 'Get all tasks' })
   @ApiResponse({ status: 200, description: 'List of tasks', type: [Task] })
   findAll() {
     return this.tasksService.findAll();
   }
 
   @Get(':id')
-  @ApiOperation({ summary: 'Retrieve a specific task' })
+  @ApiOperation({ summary: 'Get a specific task' })
   @ApiResponse({ status: 200, description: 'Task found.', type: Task })
   findOne(@Param('id') id: string) {
     return this.tasksService.findOne(+id);
