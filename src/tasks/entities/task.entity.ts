@@ -27,4 +27,7 @@ export class Task {
 
   @ManyToOne(() => Project, (project) => project.tasks, { onDelete: 'CASCADE' })
   project: Project;
+
+  @Column({ nullable: false })
+  projectId: number;
 }
