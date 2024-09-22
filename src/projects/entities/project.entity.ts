@@ -1,5 +1,11 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
+enum Status {
+  InProccess,
+  completed,
+  incompleted,
+}
+
 @Entity({ name: 'projects' })
 export class Project {
   @PrimaryGeneratedColumn()
@@ -11,6 +17,6 @@ export class Project {
   @Column({ nullable: true })
   description: string;
 
-  //    @Column()
-  //   status:
+  @Column({ nullable: false })
+  status: Status;
 }
