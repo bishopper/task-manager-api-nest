@@ -1,10 +1,10 @@
 import { Task } from 'src/tasks/entities/task.entity';
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
-enum Status {
-  InProccess,
-  Completed,
-  Incompleted,
+export enum ProjectStatus {
+  InProccess = 'InProccess',
+  Completed = 'Completed',
+  Incompleted = 'Incompleted',
 }
 
 @Entity({ name: 'projects' })
@@ -19,7 +19,7 @@ export class Project {
   description: string;
 
   @Column({ nullable: false })
-  status: Status;
+  status: ProjectStatus;
 
   @OneToMany(() => Task, (task) => task.project)
   tasks: Task[];
