@@ -32,8 +32,26 @@ export class TasksService {
   }
 
   async update(id: number, updateTaskDto: UpdateTaskDto): Promise<Task> {
-    await this.tasksRepository.update(id, updateTaskDto);
-    return this.findOne(id);
+    const task = await this.findOne(id);
+
+    if (!task) {
+      throw new Error('Task not found');
+    }
+
+    if (updateTaskDto.projectId) {
+      const project = await this.projectsRepository.findOneBy({
+        id: updateTaskDto.projectId,
+      });
+      if (!project) {
+        throw new Error('Project not found');
+      }
+      task.project = project;
+    }
+
+    Object.assign(task, updateTaskDto);
+    await this.tasksRepository.save(task);
+
+    return task;
   }
 
   findAll() {
