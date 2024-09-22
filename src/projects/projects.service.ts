@@ -18,11 +18,16 @@ export class ProjectsService {
   }
 
   findAll() {
-    return this.usersRepository.find();
+    return this.usersRepository.find({
+      relations: ['tasks'],
+    });
   }
 
   findOne(id: number): Promise<Project | null> {
-    return this.usersRepository.findOneBy({ id });
+    return this.usersRepository.findOne({
+      where: { id },
+      relations: ['tasks'],
+    });
   }
 
   async update(
