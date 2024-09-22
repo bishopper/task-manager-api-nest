@@ -8,6 +8,9 @@ export class Project {
   @Column()
   name: string;
 
+  @Column({ nullable: true })
+  description: string;
+
   //    @Column()
   //   status:
 }
