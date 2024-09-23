@@ -18,7 +18,7 @@ export class Project {
   @Column({ nullable: true })
   description: string;
 
-  @Column({ nullable: false })
+  @Column({ nullable: true, default: ProjectStatus.Incompleted })
   status: ProjectStatus;
 
   @OneToMany(() => Task, (task) => task.project)
